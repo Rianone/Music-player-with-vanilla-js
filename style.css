@@ -14,12 +14,19 @@ body{
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    background: url(./images/bg.png) no-repeat;
+    background-size: cover;
+}
+h1{
+    color: #fff;
+    text-shadow: black 2px 2px;
+    margin-bottom: 1rem;
+    font-size: 3rem;
 }
 
 .container{
     width: 30%;
     height: 60%;
-    border: 1px black solid;
 }
 
 .container .player-container{
@@ -29,6 +36,8 @@ body{
     justify-content: center;
     width: 100%;
     height: 100%;
+    background: #fff;
+    border-radius: 20px;
 }
 
 .container .player-container .album-image{
@@ -36,4 +45,26 @@ body{
     width: 70%;
     height: 70%;
     background-size: cover;
+    margin-top: 1rem;
+}
+
+.container .player-container .album-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.container .player-container .album-title .title{
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.container .player-container .album-title .sub-title {
+    font-size: 0.7rem;
+    align-self: flex-start;
+    text-transform: capitalize;
+    color: grey;
 }
