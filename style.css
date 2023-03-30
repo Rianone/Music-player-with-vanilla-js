@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+* {
+    font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width: 30%;
+    height: 60%;
+    border: 1px black solid;
+}
+
+.container .player-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container .player-container .album-image{
+    background: url(./images/music-image1.png) no-repeat;
+    width: 70%;
+    height: 70%;
+    background-size: cover;
+}
