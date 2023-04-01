@@ -62,13 +62,28 @@ h1{
 .container .player-container .album-title .title{
     font-weight: bold;
     text-transform: capitalize;
+    text-overflow: ellipsis;
 }
 
 .container .player-container .album-title .sub-title {
     font-size: 0.7rem;
-    /* align-self: flex-start; */
     text-transform: capitalize;
     color: grey;
+    text-overflow: ellipsis;
+}
+
+.container .player-container .time-tracker{
+    width: 70%;
+    margin-bottom: 1rem;
+}
+.container .player-container .time-tracker .bar{
+    height: 9px;
+    border-radius: 20px;
+    background: #b0aaaacd;
+}
+.container .player-container .time-tracker .bar .bar-content{
+    background: #000;
+    width: 50%;
 }
 
 .container .player-container .directions{
