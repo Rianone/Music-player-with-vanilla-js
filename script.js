@@ -67,18 +67,21 @@ fetch('./data.json', options)
         getArtistName(start_music)
 
         control_pause.addEventListener('click', () => {
-            control_pause.classList.toggle("fa-pause-circle");
-            control_pause.classList.toggle("fa-play-circle");
+            
             
             audio_component.src = start_music.trackMetadata.trackUri;
             
             if (playing) {
                 audio_component.play();
                 sound_wave.classList.add("display")
+                control_pause.classList.remove("fa-pause-circle");
+                control_pause.classList.add("fa-play-circle");
             }
             else {
                 audio_component.pause();
                 sound_wave.classList.remove("display")
+                control_pause.classList.add("fa-pause-circle");
+                control_pause.classList.remove("fa-play-circle");
             }
             playing = !playing;
         })
@@ -102,6 +105,9 @@ fetch('./data.json', options)
         });
 
         control_next.addEventListener("click", () => {
+            if (index == 15) {
+                index = 0
+            }
             index++;
             start_music = response[index]
             getArtistName(start_music)
@@ -110,12 +116,17 @@ fetch('./data.json', options)
             audio_component.play()
             control_pause.classList.add("fa-pause-circle");
             control_pause.classList.remove("fa-play-circle");
+            sound_wave.classList.add("display")
 
             bgindex++;
             setBg()
+            playing = true;
         })
 
         control_previous.addEventListener("click", () => {
+            if (index == 0) {
+                index = 15;
+            }
             index--;
             start_music = response[index]
             getArtistName(start_music)
@@ -124,8 +135,10 @@ fetch('./data.json', options)
             audio_component.play()
             control_pause.classList.add("fa-pause-circle");
             control_pause.classList.remove("fa-play-circle");
+            sound_wave.classList.add("display")
 
             bgindex--;
             setBg()
+            playing = true;
         })
 }).catch(err => console.error(err));

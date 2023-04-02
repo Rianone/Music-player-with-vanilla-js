@@ -143,7 +143,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "BESO",
-      "trackUri": "spotify:track:609E1JCInJncactoMmkDon",
+      "trackUri": "./music/Beso.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e024d6cf0d0d5e32ca4fa3a59e1",
       "artists": [
         {
