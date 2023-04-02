@@ -103,7 +103,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Kill Bill",
-      "trackUri": "spotify:track:1Qrg8KqiBpW07V7PNxwwwL",
+      "trackUri": "./music/KillBill.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e020c471c36970b9406233842a5",
       "artists": [
         {
