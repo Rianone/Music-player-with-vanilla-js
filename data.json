@@ -58,7 +58,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "TQG",
-      "trackUri": "spotify:track:0DWdj2oZMBFSzRsi2Cvfzf",
+      "trackUri": "./music/TQG.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e0282de1ca074ae63cb18fce335",
       "artists": [
         {

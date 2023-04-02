@@ -70,14 +70,15 @@ fetch('./data.json', options)
             control_pause.classList.toggle("fa-pause-circle");
             control_pause.classList.toggle("fa-play-circle");
             
-            sound_wave.classList.toggle("display")
             audio_component.src = start_music.trackMetadata.trackUri;
-
+            
             if (playing) {
                 audio_component.play();
+                sound_wave.classList.toggle("display")
             }
             else {
                 audio_component.pause();
+                sound_wave.classList.toggle("display")
             }
             playing = !playing;
         })
@@ -104,7 +105,8 @@ fetch('./data.json', options)
             index++;
             start_music = response[index]
             getArtistName(start_music)
-
+            audio_component.src = start_music.trackMetadata.trackUri;
+            audio_component.play()
             bgindex++;
             setBg()
         })
@@ -113,7 +115,8 @@ fetch('./data.json', options)
             index--;
             start_music = response[index]
             getArtistName(start_music)
-
+            audio_component.src = start_music.trackMetadata.trackUri;
+            audio_component.play()
             bgindex--;
             setBg()
         })
