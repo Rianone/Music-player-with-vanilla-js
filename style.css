@@ -14,7 +14,7 @@ body{
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background: url(./images/bg.png) no-repeat;
+    background: url(./images/bg0.png) no-repeat;
     background-size: cover;
 }
 h1{
@@ -27,6 +27,21 @@ h1{
 .container{
     width: 30%;
     height: 60%;
+}
+.sound-wave{
+    align-self: center;
+    width: 100%;
+    height: 50%;
+    z-index: -2;
+    position: absolute;
+    top: 1;
+    background: url("./images/sound-waves.gif") no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: none;
+}
+.display {
+    display: block;
 }
 
 .container .player-container{
@@ -48,6 +63,7 @@ h1{
     height: 70%;
     background-size: cover;
     margin-top: 2rem;
+    background-position: center;
 }
 
 .container .player-container .album-title{
@@ -62,14 +78,21 @@ h1{
 .container .player-container .album-title .title{
     font-weight: bold;
     text-transform: capitalize;
-    text-overflow: ellipsis;
+    text-overflow: hidden;
+    text-align: center;
 }
 
 .container .player-container .album-title .sub-title {
     font-size: 0.7rem;
     text-transform: capitalize;
     color: grey;
-    text-overflow: ellipsis;
+    text-align: center;
+}
+#control-play{
+    display: none;
+}
+.visibility{
+    display: block;
 }
 
 .container .player-container .time-tracker{
@@ -98,6 +121,9 @@ h1{
 .container .player-container .directions i:hover{
     opacity: 0.5;
     cursor: pointer;
+}
+.container .player-container .directions .play{
+    font-size: 2.7rem;
 }
 
 @media (min-width: 1200px) {

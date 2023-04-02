@@ -7,8 +7,14 @@
     <title>Music player</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/icons/favicon-16x16.png">
+    <link rel="manifest" href="./images/icons/site.webmanifest">
 </head>
 <body>
+    <div class="sound-wave"></div>
     <h1>Music Player</h1>
     <div class="container">
         <div class="player-container">
@@ -21,8 +27,7 @@
             </div>
             <div class="directions">
                 <i class="fa fa-caret-left" aria-hidden="true" title="Previous music" id="control-previous"></i>
-                <!-- <i class="fa fa-play-circle" aria-hidden="true" title="Play music"></i> -->
-                <i class="fa fa-pause-circle" aria-hidden="true" title="Pause music" id="control-pause"></i>
+                <i class="fa fa-play-circle play" aria-hidden="true" title="Pause music" id="control-pause"></i>
                 <i class="fa fa-caret-right" aria-hidden="true" title="Next music" id="control-next"></i>
                 <audio id="audio-track"></audio>
             </div>
