@@ -20,16 +20,27 @@
         <div class="player-container">
             <div class="album-image"></div>
             <div class="album-title"><span class="title"></span> <span class="sub-title"></span></div>
-            <div class="time-tracker">
-                <div class="bar">
-                    <div class="bar bar-content"></div>
-                </div>
+
+            <div class="mute-button">
+                <i class="fa fa-volume-down" aria-hidden="true"></i>
+                <!-- <i class="fa fa-volume-off" aria-hidden="true"></i> -->
             </div>
+
+            <div class="time-tracker">
+                <input type="range" id="seek-slider" max="100" value="0" class="bar">
+            </div>
+
+            <div class="time-tracker-time">
+                <span id="current-time" class="time">0:00</span>
+                <span id="duration" class="time">0:00</span>
+            </div>
+
+            
+            <audio id="audio-track"  preload=”metadata”></audio>
             <div class="directions">
                 <i class="fa fa-caret-left" aria-hidden="true" title="Previous music" id="control-previous"></i>
                 <i class="fa fa-play-circle play" aria-hidden="true" title="Pause music" id="control-pause"></i>
                 <i class="fa fa-caret-right" aria-hidden="true" title="Next music" id="control-next"></i>
-                <audio id="audio-track"></audio>
             </div>
         </div>
     </div>

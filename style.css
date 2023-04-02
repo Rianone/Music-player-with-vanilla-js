@@ -26,7 +26,7 @@ h1{
 
 .container{
     width: 30%;
-    height: 60%;
+    height: 70%;
 }
 .sound-wave{
     align-self: center;
@@ -55,6 +55,22 @@ h1{
     border-radius: 20px;
     padding: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.206) 10px 10px;
+}
+
+.container .player-container .mute-button{
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.container .player-container .mute-button i{
+    font-size: 2rem;
+}
+
+.container .player-container .mute-button i:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .container .player-container .album-image{
@@ -95,19 +111,30 @@ h1{
     display: block;
 }
 
-.container .player-container .time-tracker{
-    width: 70%;
+.container .player-container .time-tracker-time{
     margin-bottom: 1rem;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.container .player-container .time-tracker-time span{
+    padding-top: 1rem;
+    font-size: 0.6rem;
+}
+
+.container .player-container .time-tracker{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .container .player-container .time-tracker .bar{
-    height: 9px;
-    border-radius: 20px;
-    background: #b0aaaacd;
+    width: 70%;
+    cursor: pointer;
 }
-.container .player-container .time-tracker .bar .bar-content{
-    background: #000;
-    width: 50%;
-}
+
 
 .container .player-container .directions{
     font-size: 2rem;

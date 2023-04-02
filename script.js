@@ -1,10 +1,8 @@
+
 const options = {
     method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': 'aed82b4847mshe79a3180d79c550p14cca7jsnbe3898101093',
-        'X-RapidAPI-Host': 'spotify81.p.rapidapi.com'
-    }
 }
+
 
 const audio_component = document.getElementById('audio-track');
 const control_previous = document.getElementById('control-previous');
@@ -15,8 +13,17 @@ const music_subtitle = document.querySelector(".sub-title");
 const music_image = document.querySelector('.album-image');
 const sound_wave = document.querySelector('.sound-wave');
 const body = document.querySelector('body');
+const durationContainer = document.getElementById('duration');
+const seekSlider = document.getElementById('seek-slider');
+
 var bgindex = 0;
 
+
+const currentTimeContainer = document.getElementById('current-time');
+
+seekSlider.addEventListener('input', () => {
+    currentTimeContainer.textContent = calculateTime(seekSlider.value);
+});
 
 function getArtistName(start_music) {
     let artists = null;
@@ -30,21 +37,33 @@ function getArtistName(start_music) {
 }
 
 function setBg() {
-    if (bgindex == 13) {
+    if (bgindex == 15) {
         bgindex = 0;
     }
     body.style.background = "url(./images/bg" + bgindex + ".png) no-repeat";
     body.style.backgroundSize = "cover"
 }
 
-fetch('https://spotify81.p.rapidapi.com/top_200_tracks', options)
+const calculateTime = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${minutes}:${returnedSeconds}`;
+}
+
+const displayDuration = () => {
+    durationContainer.textContent = calculateTime(audio_component.duration);
+}
+
+
+fetch('./data.json', options)
     .then(response => response.json())
     .then(response => {
-        console.log(response);
 
         let index = 0;
         let start_music = response[index];
-
+        let playing = true;
+       
         getArtistName(start_music)
 
         control_pause.addEventListener('click', () => {
@@ -53,9 +72,33 @@ fetch('https://spotify81.p.rapidapi.com/top_200_tracks', options)
             
             sound_wave.classList.toggle("display")
             audio_component.src = start_music.trackMetadata.trackUri;
-            audio_component.autoplay;
-            
+
+            if (playing) {
+                audio_component.play();
+            }
+            else {
+                audio_component.pause();
+            }
+            playing = !playing;
         })
+
+        if (audio_component.readyState > 0) {
+            displayDuration();
+            const bufferedAmount = audio_component.buffered.end(audio_component.buffered.length - 1);
+            const seekableAmount = audio_component.seekable.end(audio_component.seekable.length - 1);
+        } else {
+            audio_component.addEventListener('loadedmetadata', () => {
+                displayDuration();
+            });
+        }
+
+        seekSlider.addEventListener('change', () => {
+            audio_component.currentTime = seekSlider.value;
+        });
+
+        audio_component.addEventListener('timeupdate', () => {
+            seekSlider.value = Math.floor(audio_component.currentTime);
+        });
 
         control_next.addEventListener("click", () => {
             index++;
