@@ -105,8 +105,12 @@ fetch('./data.json', options)
             index++;
             start_music = response[index]
             getArtistName(start_music)
+
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
+            control_pause.classList.add("fa-pause-circle");
+            control_pause.classList.remove("fa-play-circle");
+
             bgindex++;
             setBg()
         })
@@ -115,8 +119,12 @@ fetch('./data.json', options)
             index--;
             start_music = response[index]
             getArtistName(start_music)
+
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
+            control_pause.classList.add("fa-pause-circle");
+            control_pause.classList.remove("fa-play-circle");
+
             bgindex--;
             setBg()
         })
