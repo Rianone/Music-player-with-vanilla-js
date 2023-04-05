@@ -67,6 +67,8 @@ fetch('./data.json', options)
         getArtistName(start_music)
 
         control_pause.addEventListener('click', () => {
+            control_pause.classList.toggle("fa-pause-circle");
+            control_pause.classList.toggle("fa-play-circle");
             
             
             audio_component.src = start_music.trackMetadata.trackUri;
@@ -74,14 +76,10 @@ fetch('./data.json', options)
             if (playing) {
                 audio_component.play();
                 sound_wave.classList.add("display")
-                control_pause.classList.remove("fa-pause-circle");
-                control_pause.classList.add("fa-play-circle");
             }
             else {
                 audio_component.pause();
                 sound_wave.classList.remove("display")
-                control_pause.classList.add("fa-pause-circle");
-                control_pause.classList.remove("fa-play-circle");
             }
             playing = !playing;
         })
