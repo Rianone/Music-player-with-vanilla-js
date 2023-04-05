@@ -15,15 +15,20 @@ const sound_wave = document.querySelector('.sound-wave');
 const body = document.querySelector('body');
 const durationContainer = document.getElementById('duration');
 const seekSlider = document.getElementById('seek-slider');
+const currentTimeContainer = document.getElementById('current-time');
+const volume_btn = document.getElementById('volume_btn');
 
 var bgindex = 0;
+let volume = true;
+let rAF = null;
 
+const whilePlaying = () => {
+    seekSlider.value = Math.floor(audio_component.currentTime);
+    currentTimeContainer.innerHTML = calculateTime(seekSlider.value);
+    // audioPlayerContainer.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
+    rAF = requestAnimationFrame(whilePlaying);
+}
 
-const currentTimeContainer = document.getElementById('current-time');
-
-seekSlider.addEventListener('input', () => {
-    currentTimeContainer.textContent = calculateTime(seekSlider.value);
-});
 
 function getArtistName(start_music) {
     let artists = null;
@@ -55,6 +60,26 @@ const displayDuration = () => {
     durationContainer.textContent = calculateTime(audio_component.duration);
 }
 
+const setSliderMax = () => {
+    seekSlider.max = Math.floor(audio_component.duration);
+}
+
+
+volume_btn.addEventListener("click", () => {
+    if (volume) {
+        audio_component.volume = 0;
+        volume_btn.classList.remove("fa-volume-down");
+        volume_btn.classList.add("fa-volume-off");
+    }
+    else {
+        audio_component.volume = 1;
+        volume_btn.classList.remove("fa-volume-off");
+        volume_btn.classList.add("fa-volume-down");
+    }
+    volume = !volume;
+})
+
+
 
 fetch('./data.json', options)
     .then(response => response.json())
@@ -63,6 +88,8 @@ fetch('./data.json', options)
         let index = 0;
         let start_music = response[index];
         let playing = true;
+        // const bufferedAmount = audio_component.buffered.end(audio_component.buffered.length - 1);
+        // const seekableAmount = audio_component.seekable.end(audio_component.seekable.length - 1);
        
         getArtistName(start_music)
 
@@ -76,30 +103,42 @@ fetch('./data.json', options)
             if (playing) {
                 audio_component.play();
                 sound_wave.classList.add("display")
+                requestAnimationFrame(whilePlaying);
             }
             else {
                 audio_component.pause();
                 sound_wave.classList.remove("display")
+                cancelAnimationFrame(rAF);
             }
             playing = !playing;
         })
 
         if (audio_component.readyState > 0) {
             displayDuration();
-            const bufferedAmount = audio_component.buffered.end(audio_component.buffered.length - 1);
-            const seekableAmount = audio_component.seekable.end(audio_component.seekable.length - 1);
+            setSliderMax();
         } else {
             audio_component.addEventListener('loadedmetadata', () => {
                 displayDuration();
+                setSliderMax();
             });
         }
 
-        seekSlider.addEventListener('change', () => {
-            audio_component.currentTime = seekSlider.value;
-        });
-
         audio_component.addEventListener('timeupdate', () => {
             seekSlider.value = Math.floor(audio_component.currentTime);
+        });
+
+        seekSlider.addEventListener('input', () => {
+            currentTimeContainer.innerHTML = calculateTime(seekSlider.value);
+            if (!audio_component.paused) {
+                cancelAnimationFrame(rAF);
+            }
+        });
+
+        seekSlider.addEventListener('change', () => {
+            audio_component.currentTime = seekSlider.value;
+            if (!audio_component.paused) {
+                requestAnimationFrame(whilePlaying);
+            }
         });
 
         control_next.addEventListener("click", () => {
@@ -119,6 +158,10 @@ fetch('./data.json', options)
             bgindex++;
             setBg()
             playing = true;
+
+            audio_component.addEventListener('timeupdate', () => {
+                seekSlider.value = Math.floor(audio_component.currentTime);
+            });
         })
 
         control_previous.addEventListener("click", () => {
@@ -138,5 +181,9 @@ fetch('./data.json', options)
             bgindex--;
             setBg()
             playing = true;
+
+            audio_component.addEventListener('timeupdate', () => {
+                seekSlider.value = Math.floor(audio_component.currentTime);
+            });
         })
 }).catch(err => console.error(err));
