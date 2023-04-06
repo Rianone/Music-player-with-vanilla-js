@@ -25,7 +25,6 @@ let rAF = null;
 const whilePlaying = () => {
     seekSlider.value = Math.floor(audio_component.currentTime);
     currentTimeContainer.innerHTML = calculateTime(seekSlider.value);
-    // audioPlayerContainer.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
     rAF = requestAnimationFrame(whilePlaying);
 }
 
@@ -60,6 +59,8 @@ const displayDuration = () => {
     durationContainer.textContent = calculateTime(audio_component.duration);
 }
 
+
+
 const setSliderMax = () => {
     seekSlider.max = Math.floor(audio_component.duration);
 }
@@ -88,9 +89,8 @@ fetch('./data.json', options)
         let index = 0;
         let start_music = response[index];
         let playing = true;
-        // const bufferedAmount = audio_component.buffered.end(audio_component.buffered.length - 1);
-        // const seekableAmount = audio_component.seekable.end(audio_component.seekable.length - 1);
        
+
         getArtistName(start_music)
 
         control_pause.addEventListener('click', () => {
@@ -125,6 +125,7 @@ fetch('./data.json', options)
 
         audio_component.addEventListener('timeupdate', () => {
             seekSlider.value = Math.floor(audio_component.currentTime);
+
         });
 
         seekSlider.addEventListener('input', () => {
@@ -141,6 +142,7 @@ fetch('./data.json', options)
             }
         });
 
+        
         control_next.addEventListener("click", () => {
             if (index == 15) {
                 index = 0
@@ -151,13 +153,13 @@ fetch('./data.json', options)
 
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
+            playing = true;
             control_pause.classList.add("fa-pause-circle");
             control_pause.classList.remove("fa-play-circle");
             sound_wave.classList.add("display")
 
             bgindex++;
             setBg()
-            playing = true;
 
             audio_component.addEventListener('timeupdate', () => {
                 seekSlider.value = Math.floor(audio_component.currentTime);
@@ -174,13 +176,13 @@ fetch('./data.json', options)
 
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
+            playing = true;
             control_pause.classList.add("fa-pause-circle");
             control_pause.classList.remove("fa-play-circle");
             sound_wave.classList.add("display")
 
             bgindex--;
             setBg()
-            playing = true;
 
             audio_component.addEventListener('timeupdate', () => {
                 seekSlider.value = Math.floor(audio_component.currentTime);
