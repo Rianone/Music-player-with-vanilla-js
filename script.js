@@ -153,6 +153,12 @@ fetch('./data.json', options)
 
         });
 
+        window.addEventListener("click", function (evt) {
+            if (evt.target == modal_info) {
+                modal_info.style.display = "none";
+            }
+        });
+
 
         getArtistName(start_music)
 
