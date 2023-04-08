@@ -23,6 +23,7 @@ const current_rank = document.getElementById("current-rank");
 const artists = document.getElementById("artists");
 const producers = document.getElementById("producers");
 const labels = document.getElementById("labels");
+const songW = document.getElementById("songW");
 const song_writers = document.getElementById("song-writers");
 const release_date = document.getElementById("release-date");
 const title_music = document.getElementById("music-title");
@@ -138,7 +139,7 @@ fetch('./data.json', options)
             }
 
             if (start_music.trackMetadata.songWriters.length == 0) {
-                song_writers.innerHTML = "None"
+                songW.innerHTML = "None"
             }
             else {
                 for (let j = 0; j < start_music.trackMetadata.songWriters.length; j++) {

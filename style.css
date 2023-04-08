@@ -37,6 +37,10 @@ h1{
     text-overflow: auto;
 }
 
+#song-writers{
+    font-size: 1rem !important;
+}
+
 .modal-album-info .modal-content{
     background: #fff;
     width: 50%;
@@ -64,7 +68,10 @@ h1{
 
 .modal-album-info .modal-content .content p{
     align-self: baseline;
-    font-weight: 500;
+}
+
+.modal-album-info .modal-content .content span, .modal-album-info .modal-content .content li{
+    font-weight: 600;
 }
 
 .container{
