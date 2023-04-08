@@ -17,10 +17,22 @@ const durationContainer = document.getElementById('duration');
 const seekSlider = document.getElementById('seek-slider');
 const currentTimeContainer = document.getElementById('current-time');
 const volume_btn = document.getElementById('volume_btn');
+const modal_info = document.querySelector('.modal-album-info');
+const track_name = document.getElementById("track-name");
+const current_rank = document.getElementById("current-rank");
+const artists = document.getElementById("artists");
+const producers = document.getElementById("producers");
+const labels = document.getElementById("labels");
+const song_writers = document.getElementById("song-writers");
+const release_date = document.getElementById("release-date");
+const title_music = document.getElementById("music-title");
 
 var bgindex = 0;
 let volume = true;
 let rAF = null;
+
+
+
 
 const whilePlaying = () => {
     seekSlider.value = Math.floor(audio_component.currentTime);
@@ -90,6 +102,56 @@ fetch('./data.json', options)
         let start_music = response[index];
         let playing = true;
        
+        music_image.addEventListener("click", () => {
+            modal_info.style.display = "flex";
+
+            title_music.innerHTML = start_music.trackMetadata.trackName;
+            track_name.innerHTML = start_music.trackMetadata.trackName;
+            current_rank.innerHTML = start_music.chartEntryData.currentRank;
+
+            for (let j = 0; j < start_music.trackMetadata.artists.length; j++) {
+                var element = document.createElement('li');
+                element.innerHTML = start_music.trackMetadata.artists[j].name;
+                artists.appendChild(element);
+            }
+
+            if (start_music.trackMetadata.producers.length == 0) {
+                producers.innerHTML = "None"
+            }
+            else {
+                for (let j = 0; j < start_music.trackMetadata.producers.length; j++) {
+                        var element = document.createElement('li');
+                        element.innerHTML = start_music.trackMetadata.producers[j].name;
+                        producers.appendChild(element);
+                }
+            }
+
+            if (start_music.trackMetadata.labels.length == 0) {
+                labels.innerHTML = "None"
+            }
+            else {
+                for (let j = 0; j < start_music.trackMetadata.labels.length; j++) {
+                    var element = document.createElement('li');
+                    element.innerHTML = start_music.trackMetadata.labels[j].name;
+                    labels.appendChild(element);
+                }
+            }
+
+            if (start_music.trackMetadata.songWriters.length == 0) {
+                song_writers.innerHTML = "None"
+            }
+            else {
+                for (let j = 0; j < start_music.trackMetadata.songWriters.length; j++) {
+                    var element = document.createElement('li');
+                    element.innerHTML = start_music.trackMetadata.songWriters[j].name;
+                    song_writers.appendChild(element);
+                }
+            }
+
+            release_date.innerHTML = start_music.trackMetadata.releaseDate;
+
+        });
+
 
         getArtistName(start_music)
 
