@@ -111,6 +111,7 @@ fetch('./data.json', options)
             current_rank.innerHTML = start_music.chartEntryData.currentRank;
 
             for (let j = 0; j < start_music.trackMetadata.artists.length; j++) {
+                artists.innerHTML = "";
                 var element = document.createElement('li');
                 element.innerHTML = start_music.trackMetadata.artists[j].name;
                 artists.appendChild(element);
@@ -120,6 +121,7 @@ fetch('./data.json', options)
                 producers.innerHTML = "None"
             }
             else {
+                producers.innerHTML = "";
                 for (let j = 0; j < start_music.trackMetadata.producers.length; j++) {
                         var element = document.createElement('li');
                         element.innerHTML = start_music.trackMetadata.producers[j].name;
@@ -131,6 +133,7 @@ fetch('./data.json', options)
                 labels.innerHTML = "None"
             }
             else {
+                labels.innerHTML = "";
                 for (let j = 0; j < start_music.trackMetadata.labels.length; j++) {
                     var element = document.createElement('li');
                     element.innerHTML = start_music.trackMetadata.labels[j].name;
@@ -142,6 +145,7 @@ fetch('./data.json', options)
                 songW.innerHTML = "None"
             }
             else {
+                songW.innerHTML = "";
                 for (let j = 0; j < start_music.trackMetadata.songWriters.length; j++) {
                     var element = document.createElement('li');
                     element.innerHTML = start_music.trackMetadata.songWriters[j].name;

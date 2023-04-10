@@ -50,6 +50,7 @@ h1{
     justify-content: center;
     border-radius: 3rem;
     text-overflow: auto;
+    text-align: center;
 }
 .modal-album-info .modal-content .content{
     display: flex;
@@ -60,10 +61,12 @@ h1{
 }
 .modal-album-info .modal-content .content h2{
     text-transform: capitalize;
+    text-overflow: auto;
 }
 .modal-album-info .modal-content .content p, .modal-album-info .modal-content .content li{
     font-size: 0.7rem;
     padding: 1px;
+    text-overflow: auto;
 }
 
 .modal-album-info .modal-content .content p{
@@ -217,6 +220,9 @@ h1{
     .container .player-container {
         width: 60%;
     }
+    .modal-album-info .modal-content{
+        width: 20%;
+    }
 }
 
 @media (max-width: 1500px) {
@@ -228,6 +234,9 @@ h1{
     .container .player-container {
         width: 90%;
     }
+    .modal-album-info .modal-content{
+        width: 30%;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -235,6 +244,9 @@ h1{
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 40%;
+    }
+     .modal-album-info .modal-content{
         width: 40%;
     }
 }
@@ -258,6 +270,12 @@ h1{
     h1{
         font-size: 2.5rem;
     }
+    .modal-album-info .modal-content{
+        width: 50%;
+    }
+     .modal-album-info .modal-content{
+        width: 70%;
+    }
 }
 
 @media (max-width: 400px) {
@@ -265,6 +283,9 @@ h1{
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 80%;
+    }
+    .modal-album-info .modal-content{
         width: 80%;
     }
 }
