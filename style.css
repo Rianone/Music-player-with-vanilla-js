@@ -41,6 +41,16 @@ h1{
     font-size: 1rem !important;
 }
 
+.icon-list{
+    align-self: end;
+    font-size: 1.2rem;
+    margin-right: 2.2rem;
+}
+
+.icon-list i:first-child{
+    margin: 10px;
+}
+
 .modal-album-info .modal-content{
     background: #fff;
     width: 50%;
@@ -118,10 +128,10 @@ h1{
 }
 
 .container .player-container .mute-button i{
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
-.container .player-container .mute-button i:hover {
+.container .player-container .mute-button i:hover, .icon-list i:hover {
     opacity: 0.5;
     cursor: pointer;
 }

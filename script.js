@@ -82,13 +82,15 @@ const setSliderMax = () => {
 volume_btn.addEventListener("click", () => {
     if (volume) {
         audio_component.volume = 0;
-        volume_btn.classList.remove("fa-volume-down");
+        volume_btn.classList.remove("fa-volume-up");
         volume_btn.classList.add("fa-volume-off");
+        volume_btn.title = "Sound on";
     }
     else {
+        volume_btn.title = "Mute";
         audio_component.volume = 1;
         volume_btn.classList.remove("fa-volume-off");
-        volume_btn.classList.add("fa-volume-down");
+        volume_btn.classList.add("fa-volume-up");
     }
     volume = !volume;
 })
@@ -215,7 +217,48 @@ fetch('./data.json', options)
             if (!audio_component.paused) {
                 requestAnimationFrame(whilePlaying);
             }
+            audio_component.addEventListener('timeupdate', () => {
+                seekSlider.value = Math.floor(audio_component.currentTime);
+            });
         });
+
+        audio_component.addEventListener("ended", () => {
+            if (index == 15) {
+                index = 0
+            }
+            index++;
+            start_music = response[index]
+            getArtistName(start_music)
+
+            audio_component.src = start_music.trackMetadata.trackUri;
+            audio_component.play()
+            playing = true;
+
+            if (playing) {
+                control_pause.classList.remove("fa-play-circle");
+                control_pause.classList.add("fa-pause-circle");
+                audio_component.play();
+                sound_wave.classList.add("display")
+                requestAnimationFrame(whilePlaying);
+            }
+            else {
+                control_pause.classList.add("fa-play-circle");
+                control_pause.classList.remove("fa-pause-circle");
+                audio_component.pause();
+                sound_wave.classList.remove("display")
+                cancelAnimationFrame(rAF);
+            }
+            playing = !playing;
+
+            sound_wave.classList.add("display")
+
+            bgindex++;
+            setBg()
+
+            audio_component.addEventListener('timeupdate', () => {
+                seekSlider.value = Math.floor(audio_component.currentTime);
+            });
+        })
 
         
         control_next.addEventListener("click", () => {
