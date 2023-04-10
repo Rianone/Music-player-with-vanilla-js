@@ -163,23 +163,25 @@ fetch('./data.json', options)
         getArtistName(start_music)
 
         control_pause.addEventListener('click', () => {
-            control_pause.classList.toggle("fa-pause-circle");
-            control_pause.classList.toggle("fa-play-circle");
+           
+                audio_component.src = start_music.trackMetadata.trackUri;
+                
+                if (playing) {
+                    control_pause.classList.remove("fa-play-circle");
+                    control_pause.classList.add("fa-pause-circle");
+                    audio_component.play();
+                    sound_wave.classList.add("display")
+                    requestAnimationFrame(whilePlaying);
+                }
+                else {
+                    control_pause.classList.add("fa-play-circle");
+                    control_pause.classList.remove("fa-pause-circle");
+                    audio_component.pause();
+                    sound_wave.classList.remove("display")
+                    cancelAnimationFrame(rAF);
+                }
+                playing = !playing;
             
-            
-            audio_component.src = start_music.trackMetadata.trackUri;
-            
-            if (playing) {
-                audio_component.play();
-                sound_wave.classList.add("display")
-                requestAnimationFrame(whilePlaying);
-            }
-            else {
-                audio_component.pause();
-                sound_wave.classList.remove("display")
-                cancelAnimationFrame(rAF);
-            }
-            playing = !playing;
         })
 
         if (audio_component.readyState > 0) {
@@ -224,10 +226,21 @@ fetch('./data.json', options)
             audio_component.play()
             playing = true;
             
-            if (control_pause.classList.contains("fa-pause-circle"){
-               control_pause.classList.add("fa-pause-circle");
-               control_pause.classList.remove("fa-play-circle");
-            } 
+            if (playing) {
+                control_pause.classList.remove("fa-play-circle");
+                control_pause.classList.add("fa-pause-circle");
+                audio_component.play();
+                sound_wave.classList.add("display")
+                requestAnimationFrame(whilePlaying);
+            }
+            else {
+                control_pause.classList.add("fa-play-circle");
+                control_pause.classList.remove("fa-pause-circle");
+                audio_component.pause();
+                sound_wave.classList.remove("display")
+                cancelAnimationFrame(rAF);
+            }
+            playing = !playing;
             
             sound_wave.classList.add("display")
 
