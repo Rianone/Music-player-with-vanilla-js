@@ -223,8 +223,12 @@ fetch('./data.json', options)
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
             playing = true;
-            control_pause.classList.add("fa-pause-circle");
-            control_pause.classList.remove("fa-play-circle");
+            
+            if (control_pause.classList.contains("fa-pause-circle"){
+               control_pause.classList.add("fa-pause-circle");
+               control_pause.classList.remove("fa-play-circle");
+            } 
+            
             sound_wave.classList.add("display")
 
             bgindex++;
