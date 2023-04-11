@@ -24,7 +24,7 @@ h1{
     font-size: 3rem;
 }
 
-.modal-album-info{
+.modal-album-info, .modal-playlist{
     width: 100% !important;
     height: 100vh !important;
     z-index: 9999;
@@ -36,22 +36,11 @@ h1{
     justify-content: center;
     text-overflow: auto;
 }
-
-#song-writers{
-    font-size: 1rem !important;
+.modal-playlist{
+    display: flex;
 }
 
-.icon-list{
-    align-self: end;
-    font-size: 1.2rem;
-    margin-right: 2.2rem;
-}
-
-.icon-list i:first-child{
-    margin: 10px;
-}
-
-.modal-album-info .modal-content{
+.modal-album-info .modal-content, .modal-playlist .modal-content{
     background: #fff;
     width: 50%;
     height: 50%;
@@ -62,6 +51,16 @@ h1{
     text-overflow: auto;
     text-align: center;
 }
+
+.modal-playlist .modal-content{
+    display: block;
+    border-radius: 1rem;
+    height: 70%;
+    overflow: auto;
+    background: #ffffffb3;
+    padding: 1rem 3px;
+}
+
 .modal-album-info .modal-content .content{
     display: flex;
     flex-direction: column;
@@ -85,6 +84,70 @@ h1{
 
 .modal-album-info .modal-content .content span, .modal-album-info .modal-content .content li{
     font-weight: 600;
+}
+
+.modal-playlist .modal-content .song img{
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.modal-playlist .modal-content .song{
+    display: flex;
+    width: 95%;
+    margin: 8px;
+    align-items: center;
+    background: #fff;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0.1rem 0.2rem rgba(0, 0, 0, 0.145);
+}
+
+.modal-playlist .modal-content .song:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.modal-playlist .modal-content h2{
+    text-shadow: #fff 1px 1px;
+}
+
+.modal-playlist .modal-content .song .song-name{
+    font-weight: bold;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+}
+.modal-playlist .modal-content .song .artist {
+    font-size: 0.6rem;
+    text-transform: capitalize;
+    color: grey;
+    text-overflow: ellipsis;
+} 
+
+.modal-playlist .modal-content .song .rank{
+    margin-left: 3rem;
+    background: rgb(95, 94, 95);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+#song-writers {
+    font-size: 1rem !important;
+}
+
+.icon-list {
+    align-self: end;
+    font-size: 1.2rem;
+    margin-right: 2.2rem;
+}
+
+.icon-list i:first-child {
+    margin: 10px;
 }
 
 .container{
@@ -268,6 +331,9 @@ h1{
         justify-content: center;
         width: 50%;
     }
+     .modal-album-info .modal-content{
+        width: 60%;
+    }
 }
 
 @media (max-width: 500px) {
@@ -283,9 +349,7 @@ h1{
     .modal-album-info .modal-content{
         width: 50%;
     }
-     .modal-album-info .modal-content{
-        width: 70%;
-    }
+    
 }
 
 @media (max-width: 400px) {
@@ -296,7 +360,7 @@ h1{
         width: 80%;
     }
     .modal-album-info .modal-content{
-        width: 80%;
+        width: 70%;
     }
 }
 
