@@ -65,7 +65,7 @@ function setBg() {
     if (bgindex == 15) {
         bgindex = 0;
     }
-    body.style.background = "url(./images/bg" + bgindex + ".png) no-repeat";
+    body.style.background = "url(./images/bg" + bgindex + ".avif) no-repeat";
     body.style.backgroundSize = "cover"
 }
 
@@ -401,6 +401,9 @@ fetch('./data.json', options)
             control_pause.classList.remove("fa-play-circle");
             sound_wave.classList.add("display")
 
+            if (bgindex == 0) {
+                bgindex = 15;
+            }
             bgindex--;
             setBg()
 

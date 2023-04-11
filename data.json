@@ -188,7 +188,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Ella Baila Sola",
-      "trackUri": "spotify:track:3dnP0JxCgygwQH9Gm7q7nb",
+      "trackUri": "./music/Ella.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e022071a0c79802d9375a53bfef",
       "artists": [
         {
@@ -233,7 +233,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "FLOWER",
-      "trackUri": "spotify:track:69CrOS7vEHIrhC2ILyEi0s",
+      "trackUri": "./music/Flower.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e02f35b8a6c03cc633f734bd8ac",
       "artists": [
         {
@@ -273,7 +273,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Boy's a liar Pt. 2",
-      "trackUri": "spotify:track:6AQbmUe0Qwf5PZnt4HmTXv",
+      "trackUri": "./music/BoysLiar.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e0242c5ba689b2e7cbc208a8fa7",
       "artists": [
         {
@@ -318,7 +318,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "As It Was",
-      "trackUri": "spotify:track:4Dvkj6JhhA12EX05fT7y2e",
+      "trackUri": "./music/AsItWas.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e022e8ed79e177ff6011076f5f0",
       "artists": [
         {
@@ -358,7 +358,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Die For You - Remix",
-      "trackUri": "spotify:track:4W4fNrZYkobj539TOWsLO2",
+      "trackUri": "./music/DieForYou.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e028ad8f5243d6534e03b656c8b",
       "artists": [
         {
@@ -403,7 +403,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "La Bebe - Remix",
-      "trackUri": "spotify:track:2UW7JaomAMuX9pZrjVpHAU",
+      "trackUri": "./music/LaBebe.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e02a04be3ad7c8c67f4109111a9",
       "artists": [
         {
@@ -448,7 +448,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Yandel 150",
-      "trackUri": "spotify:track:4FAKtPVycI4DxoOHC01YqD",
+      "trackUri": "./music/Yandel.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e02b2aec01b56eeb74610532700",
       "artists": [
         {
@@ -493,7 +493,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Creepin' ",
-      "trackUri": "spotify:track:2dHHgzDwk4BJdRwy9uXhTO",
+      "trackUri": "./music/Creepin'.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e0213e54d6687e65678d60466c2",
       "artists": [
         {
@@ -543,7 +543,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Like Crazy",
-      "trackUri": "spotify:track:3Ua0m0YmEjrMi9XErKcNiR",
+      "trackUri": "./music/LikeCrazy.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e022b46078245d0120690eb560d",
       "artists": [
         {
@@ -583,7 +583,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Calm Down ",
-      "trackUri": "spotify:track:0WtM2NBVQNNJLh6scP13H8",
+      "trackUri": "./music/CalmDown.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e02a3a7f38ea2033aa501afd4cf",
       "artists": [
         {
@@ -628,7 +628,7 @@
     "missingRequiredFields": false,
     "trackMetadata": {
       "trackName": "Bzrp Music Sessions",
-      "trackUri": "spotify:track:4nrPB8O7Y7wsOCJdgXkthe",
+      "trackUri": "./music/BZRP.mp3",
       "displayImageUri": "https://i.scdn.co/image/ab67616d00001e022b6d78c5a3f6247aa997b812",
       "artists": [
         {

@@ -14,7 +14,7 @@ body{
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background: url(./images/bg0.png) no-repeat;
+    background: url(./images/bg0.avif) no-repeat;
     background-size: cover;
 }
 h1{
@@ -212,7 +212,7 @@ h1{
 }
 
 .container .player-container .album-image{
-    background: url(./images/music-image1.png) no-repeat;
+    background: url(./images/music-image1.avif) no-repeat;
     width: 70%;
     height: 70%;
     background-size: cover;
