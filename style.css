@@ -368,6 +368,9 @@ h1{
     ::-webkit-scrollbar {
         display: none;
     }
+    .modal-playlist .modal-content{
+        width: 70%;
+    }
 }
 
 @media (max-width: 500px) {
@@ -382,6 +385,9 @@ h1{
     }
     .modal-album-info .modal-content{
         width: 50%;
+    }
+    .modal-playlist .modal-content{
+        width: 80%;
     }
     
 }
