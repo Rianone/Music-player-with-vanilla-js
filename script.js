@@ -17,6 +17,7 @@ const durationContainer = document.getElementById('duration');
 const seekSlider = document.getElementById('seek-slider');
 const currentTimeContainer = document.getElementById('current-time');
 const volume_btn = document.getElementById('volume_btn');
+
 const modal_info = document.querySelector('.modal-album-info');
 const track_name = document.getElementById("track-name");
 const current_rank = document.getElementById("current-rank");
@@ -27,6 +28,11 @@ const songW = document.getElementById("songW");
 const song_writers = document.getElementById("song-writers");
 const release_date = document.getElementById("release-date");
 const title_music = document.getElementById("music-title");
+
+const modal_playlist = document.querySelector(".modal-playlist");
+const song_container = document.querySelector(".song-container");
+const show_playlist = document.getElementById('show_playlist');
+
 
 var bgindex = 0;
 let volume = true;
@@ -96,7 +102,6 @@ volume_btn.addEventListener("click", () => {
 })
 
 
-
 fetch('./data.json', options)
     .then(response => response.json())
     .then(response => {
@@ -104,6 +109,50 @@ fetch('./data.json', options)
         let index = 0;
         let start_music = response[index];
         let playing = true;
+
+        show_playlist.addEventListener('click', () => {
+            modal_playlist.style.display = "flex";
+
+            for (let i = 0; i < response.length; i++) {
+                const info = response[i];
+                
+                var element = document.createElement("div");
+                element.className = "song";
+                element.title = "Choose song";
+
+                var img = document.createElement("img");
+                img.alt = "song image";
+                img.src = info.trackMetadata.displayImageUri;
+                element.appendChild(img);
+
+                var details = document.createElement("div");
+                details.className = "details";
+
+                var song_name = document.createElement("p");
+                song_name.className = "song-name";
+                song_name.innerHTML = info.trackMetadata.trackName;
+                var artist = document.createElement("span");
+                artist.className = "artist";
+                for (let j = 0; j < info.trackMetadata.artists.length; j++) {
+                    var elm = document.createElement('span');
+                    elm.innerHTML = (j == info.trackMetadata.artists.length) ? info.trackMetadata.artists[j].name : info.trackMetadata.artists[j].name + " , " ;
+                    artist.appendChild(elm);
+                }
+                
+                details.appendChild(song_name);
+                details.appendChild(artist);
+                element.appendChild(details);
+
+                var rank = document.createElement("span");
+                rank.className = "rank";
+                rank.innerHTML = info.chartEntryData.currentRank;
+                element.appendChild(rank);
+
+                // element.addEventListener("click", )
+
+                song_container.appendChild(element);
+            }
+        })
        
         music_image.addEventListener("click", () => {
             modal_info.style.display = "flex";
@@ -162,6 +211,10 @@ fetch('./data.json', options)
         window.addEventListener("click", function (evt) {
             if (evt.target == modal_info) {
                 modal_info.style.display = "none";
+            }
+
+            if (evt.target == modal_playlist) {
+                modal_playlist.style.display = "none";
             }
         });
 

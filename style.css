@@ -36,9 +36,6 @@ h1{
     justify-content: center;
     text-overflow: auto;
 }
-.modal-playlist{
-    display: flex;
-}
 
 .modal-album-info .modal-content, .modal-playlist .modal-content{
     background: #fff;
@@ -91,6 +88,7 @@ h1{
     height: 60px;
     margin-right: 15px;
     border-radius: 50%;
+    border: 1rem solid rgb(254, 254, 254);
 }
 
 .modal-playlist .modal-content .song{
@@ -98,11 +96,13 @@ h1{
     width: 95%;
     margin: 8px;
     align-items: center;
-    background: #fff;
+    justify-content: space-between;
+    background: linear-gradient(rgb(96, 96, 96) ,#2a2a2a, rgb(0, 0, 0));
     border-radius: 2rem;
     font-size: 0.8rem;
     transition: all 0.3s ease-in-out;
     box-shadow: 0.1rem 0.2rem rgba(0, 0, 0, 0.145);
+    color: #fff;
 }
 
 .modal-playlist .modal-content .song:hover{
@@ -113,7 +113,12 @@ h1{
 .modal-playlist .modal-content h2{
     text-shadow: #fff 1px 1px;
 }
-
+.modal-playlist .modal-content .song .details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
 .modal-playlist .modal-content .song .song-name{
     font-weight: bold;
     text-transform: capitalize;
@@ -127,13 +132,16 @@ h1{
 } 
 
 .modal-playlist .modal-content .song .rank{
-    margin-left: 3rem;
+    margin-right: 1rem;
     background: rgb(95, 94, 95);
     border-radius: 50%;
-    width: 20px;
+    width: 30px;
     height: 20px;
     color: #fff;
     font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #song-writers {
@@ -143,7 +151,7 @@ h1{
 .icon-list {
     align-self: end;
     font-size: 1.2rem;
-    margin-right: 2.2rem;
+    margin-right: 1.6rem;
 }
 
 .icon-list i:first-child {
@@ -284,6 +292,29 @@ h1{
     font-size: 2.7rem;
 }
 
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 1rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
 @media (min-width: 1200px) {
     .container{
         display: flex;
@@ -333,6 +364,9 @@ h1{
     }
      .modal-album-info .modal-content{
         width: 60%;
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
 }
 
