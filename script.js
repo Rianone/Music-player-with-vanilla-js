@@ -38,10 +38,12 @@ var bgindex = 0;
 let volume = true;
 let rAF = null;
 var playlist_set = false
-
-
+var start_music;
+var playing = true;
+var playing_time = 0
 
 const whilePlaying = () => {
+    playing_time = audio_component.currentTime;
     seekSlider.value = Math.floor(audio_component.currentTime);
     currentTimeContainer.innerHTML = calculateTime(seekSlider.value);
     rAF = requestAnimationFrame(whilePlaying);
@@ -80,6 +82,7 @@ const displayDuration = () => {
 
 function set_playlist(response) {
     for (let i = 0; i < response.length; i++) {
+        
         const info = response[i];
 
         var element = document.createElement("div");
@@ -105,6 +108,10 @@ function set_playlist(response) {
             artist.appendChild(elm);
         }
 
+        if (start_music == info.chartEntryData.currentRank - 1) {
+            element.classList.add("current-song");
+        }
+
         details.appendChild(song_name);
         details.appendChild(artist);
         element.appendChild(details);
@@ -116,38 +123,24 @@ function set_playlist(response) {
 
         element.addEventListener("click", () => {
             start_music = response[info.chartEntryData.currentRank - 1];
-            getArtistName(start_music)
+            getArtistName(start_music);
 
             audio_component.src = start_music.trackMetadata.trackUri;
             audio_component.play()
-            playing = true;
-
-            if (playing) {
-                control_pause.classList.remove("fa-play-circle");
-                control_pause.classList.add("fa-pause-circle");
-                audio_component.play();
-                sound_wave.classList.add("display")
-                requestAnimationFrame(whilePlaying);
-            }
-            else {
-                control_pause.classList.add("fa-play-circle");
-                control_pause.classList.remove("fa-pause-circle");
-                audio_component.pause();
-                sound_wave.classList.remove("display")
-                cancelAnimationFrame(rAF);
-            }
-            playing = !playing;
-
-            sound_wave.classList.add("display")
-
-            bgindex++;
+            control_pause.classList.remove("fa-play-circle");
+            control_pause.classList.add("fa-pause-circle");
+            sound_wave.classList.add("display");
+            requestAnimationFrame(whilePlaying);
+            
+            bgindex = info.chartEntryData.currentRank - 1 ;
             setBg()
-
+            
             audio_component.addEventListener('timeupdate', () => {
                 seekSlider.value = Math.floor(audio_component.currentTime);
             });
-
+            
             modal_playlist.style.display = "none";
+            playing = !playing;
         })
 
         song_container.appendChild(element);
@@ -181,8 +174,8 @@ fetch('./data.json', options)
     .then(response => {
 
         let index = 0;
-        let start_music = response[index];
-        let playing = true;
+        start_music = response[index];
+       
 
         show_playlist.addEventListener('click', () => {
             modal_playlist.style.display = "flex";
@@ -268,6 +261,7 @@ fetch('./data.json', options)
                     control_pause.classList.remove("fa-play-circle");
                     control_pause.classList.add("fa-pause-circle");
                     audio_component.play();
+                    audio_component.currentTime =playing_time;
                     sound_wave.classList.add("display")
                     requestAnimationFrame(whilePlaying);
                 }
@@ -275,6 +269,7 @@ fetch('./data.json', options)
                     control_pause.classList.add("fa-play-circle");
                     control_pause.classList.remove("fa-pause-circle");
                     audio_component.pause();
+                    audio_component.currentTime = playing_time;
                     sound_wave.classList.remove("display")
                     cancelAnimationFrame(rAF);
                 }

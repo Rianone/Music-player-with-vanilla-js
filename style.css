@@ -105,6 +105,10 @@ h1{
     color: #fff;
 }
 
+.current-song{
+    background: linear-gradient(rgb(96, 96, 96), #173658, rgb(0, 15, 46));
+}
+
 .modal-playlist .modal-content .song:hover{
     cursor: pointer;
     transform: scale(1.03);
