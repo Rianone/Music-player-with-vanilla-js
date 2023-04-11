@@ -37,7 +37,7 @@ const show_playlist = document.getElementById('show_playlist');
 var bgindex = 0;
 let volume = true;
 let rAF = null;
-
+var playlist_set = false
 
 
 
@@ -78,7 +78,81 @@ const displayDuration = () => {
     durationContainer.textContent = calculateTime(audio_component.duration);
 }
 
+function set_playlist(response) {
+    for (let i = 0; i < response.length; i++) {
+        const info = response[i];
 
+        var element = document.createElement("div");
+        element.className = "song";
+        element.title = "Choose song";
+
+        var img = document.createElement("img");
+        img.alt = "song image";
+        img.src = info.trackMetadata.displayImageUri;
+        element.appendChild(img);
+
+        var details = document.createElement("div");
+        details.className = "details";
+
+        var song_name = document.createElement("p");
+        song_name.className = "song-name";
+        song_name.innerHTML = info.trackMetadata.trackName;
+        var artist = document.createElement("span");
+        artist.className = "artist";
+        for (let j = 0; j < info.trackMetadata.artists.length; j++) {
+            var elm = document.createElement('span');
+            elm.innerHTML = (j == info.trackMetadata.artists.length) ? info.trackMetadata.artists[j].name : info.trackMetadata.artists[j].name + " , ";
+            artist.appendChild(elm);
+        }
+
+        details.appendChild(song_name);
+        details.appendChild(artist);
+        element.appendChild(details);
+
+        var rank = document.createElement("span");
+        rank.className = "rank";
+        rank.innerHTML = info.chartEntryData.currentRank;
+        element.appendChild(rank);
+
+        element.addEventListener("click", () => {
+            start_music = response[info.chartEntryData.currentRank - 1];
+            getArtistName(start_music)
+
+            audio_component.src = start_music.trackMetadata.trackUri;
+            audio_component.play()
+            playing = true;
+
+            if (playing) {
+                control_pause.classList.remove("fa-play-circle");
+                control_pause.classList.add("fa-pause-circle");
+                audio_component.play();
+                sound_wave.classList.add("display")
+                requestAnimationFrame(whilePlaying);
+            }
+            else {
+                control_pause.classList.add("fa-play-circle");
+                control_pause.classList.remove("fa-pause-circle");
+                audio_component.pause();
+                sound_wave.classList.remove("display")
+                cancelAnimationFrame(rAF);
+            }
+            playing = !playing;
+
+            sound_wave.classList.add("display")
+
+            bgindex++;
+            setBg()
+
+            audio_component.addEventListener('timeupdate', () => {
+                seekSlider.value = Math.floor(audio_component.currentTime);
+            });
+
+            modal_playlist.style.display = "none";
+        })
+
+        song_container.appendChild(element);
+    }
+}
 
 const setSliderMax = () => {
     seekSlider.max = Math.floor(audio_component.duration);
@@ -113,44 +187,9 @@ fetch('./data.json', options)
         show_playlist.addEventListener('click', () => {
             modal_playlist.style.display = "flex";
 
-            for (let i = 0; i < response.length; i++) {
-                const info = response[i];
-                
-                var element = document.createElement("div");
-                element.className = "song";
-                element.title = "Choose song";
-
-                var img = document.createElement("img");
-                img.alt = "song image";
-                img.src = info.trackMetadata.displayImageUri;
-                element.appendChild(img);
-
-                var details = document.createElement("div");
-                details.className = "details";
-
-                var song_name = document.createElement("p");
-                song_name.className = "song-name";
-                song_name.innerHTML = info.trackMetadata.trackName;
-                var artist = document.createElement("span");
-                artist.className = "artist";
-                for (let j = 0; j < info.trackMetadata.artists.length; j++) {
-                    var elm = document.createElement('span');
-                    elm.innerHTML = (j == info.trackMetadata.artists.length) ? info.trackMetadata.artists[j].name : info.trackMetadata.artists[j].name + " , " ;
-                    artist.appendChild(elm);
-                }
-                
-                details.appendChild(song_name);
-                details.appendChild(artist);
-                element.appendChild(details);
-
-                var rank = document.createElement("span");
-                rank.className = "rank";
-                rank.innerHTML = info.chartEntryData.currentRank;
-                element.appendChild(rank);
-
-                // element.addEventListener("click", )
-
-                song_container.appendChild(element);
+            if (!playlist_set) {
+                set_playlist(response);
+                playlist_set = true
             }
         })
        
