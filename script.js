@@ -104,7 +104,7 @@ function set_playlist(response) {
         artist.className = "artist";
         for (let j = 0; j < info.trackMetadata.artists.length; j++) {
             var elm = document.createElement('span');
-            elm.innerHTML = (j == info.trackMetadata.artists.length) ? info.trackMetadata.artists[j].name : info.trackMetadata.artists[j].name + " , ";
+            elm.innerHTML = (j+1 == info.trackMetadata.artists.length) ? info.trackMetadata.artists[j].name : info.trackMetadata.artists[j].name + " , ";
             artist.appendChild(elm);
         }
 
